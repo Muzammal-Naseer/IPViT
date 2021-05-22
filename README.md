@@ -1,1 +1,1 @@
-# Intriguing-Properties-of-Vision-Transformers
+# Intriguing Properties of Vision Transformers
