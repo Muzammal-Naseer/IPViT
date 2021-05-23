@@ -41,7 +41,7 @@
 4. We present a methodology for using off-the-shelf ViT features that generalize exceptionally well to new domains e.g., few-shot learning, fine-grained recognition, scene classification and long-tail recognition settings.
 
 <p align="center">
-  <img src="https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/images/intro.png" width="50%" alt="explanation"/>
+  <img src="https://muzammal-naseer.github.io/intriguing-properties-of-vision-transformers/images/intro.png" width="50%" alt="explanation"/>
 </p>
 
 
