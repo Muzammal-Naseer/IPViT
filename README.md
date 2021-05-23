@@ -26,14 +26,14 @@
 ```
 
 
-# We are in the process of cleaning our code. We will update this repo shortly. Here is the highlights of what to expect :).
+### We are in the process of cleaning our code. We will update this repo shortly. Here is the highlights of what to expect :).
 
-# Pretrained vision Transformers trained on Stylized ImageNet (along with the distilled ones). We will provide code to use these tokens to for aut-segmentations.
-# Training and Evaluations for our propsed off-the-shelf ensemble features.
-# Code to evaluate any model on our proposed occulusion stratagies (random, foreground and background). 
-# Evaluation of permutation invaraince. 
-# Pretrained models to study the effect of different number of patches or patch sizes.
-# Pretrained adversarial patches and code to evalute thems.
+### Pretrained vision Transformers trained on Stylized ImageNet (along with the distilled ones). We will provide code to use these tokens to for aut-segmentations.
+### Training and Evaluations for our propsed off-the-shelf ensemble features.
+### Code to evaluate any model on our proposed occulusion stratagies (random, foreground and background). 
+### Evaluation of permutation invaraince. 
+### Pretrained models to study the effect of different number of patches or patch sizes.
+### Pretrained adversarial patches and code to evalute thems.
 
 
 
