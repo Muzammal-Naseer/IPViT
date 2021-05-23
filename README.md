@@ -1,63 +1,11 @@
-# Intriguing Properties of Vision Transformers
-
-[Muzammal Naseer](https://scholar.google.ch/citations?user=tM9xKA8AAAAJ&hl=en),
-[Kanchana Ranasinghe](https://scholar.google.com/citations?user=K2WBZTwAAAAJ),
-[Salman Khan](https://scholar.google.com/citations?user=M59O9lkAAAAJ&hl=en),
-[Munawar Hayat](https://scholar.google.ch/citations?user=Mx8MbWYAAAAJ&hl=en&oi=ao), 
-[Fahad Shahbaz Khan](https://scholar.google.ch/citations?user=zvaeYnUAAAAJ&hl=en&oi=ao), &
-[Ming-Hsuan Yang](https://scholar.google.com/citations?user=p9-ohHsAAAAJ&hl=en)
-
-**[Paper Link](TBA)** 
-
-> **Abstract:** 
->*Vision transformers (ViT) have demonstrated impressive performance across various machine vision tasks. These models are based on multi-head self-attention mechanisms that can flexibly attend to a sequence of image patches to encode contextual cues. An important question is how such flexibility (in attending image-wide4context conditioned on a given patch) can facilitate handling nuisances in natural images e.g., severe occlusions, domain shifts, spatial permutations, adversarial and natural perturbations. We systematically study this question via an extensive set of experiments encompassing three ViT families and provide comparisons with a high-performing convolutional neural network (CNN). We show and analyze the following intriguing properties of ViT: (a) Transformers are highly robust to severe occlusions, perturbations and domain shifts, e.g., retain as high as 60% top-1 accuracy on ImageNet even after randomly occluding 80% of the image content.  (b) The robust performance to occlusions is not due to a bias towards local textures, and ViTs are significantly less biased towards textures compared to CNNs. When properly trained to encode shape-based features, ViTs demonstrate shape recognition capability comparable to that of human visual system, previously unmatched in the literature. (c) Using ViTs to encode shape representation leads to an interesting consequence of accurate semantic segmentation without pixel-level supervision. (d) Off-the-shelf features from a single ViT model can be combined to create a feature ensemble, leading to high accuracy rates across a range of classification datasets in both traditional and few-shot learning paradigms.  We show effective features of ViTs are due to flexible and dynamic receptive fields possible via self-attention mechanisms. Our code will be publicly released.* 
-
-## Citation
-
-```bibtex
-@misc{naseer2021intriguing,
-      title={TBA}, 
-      author={TBA},
-      year={2021},
-      eprint={TBA},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
-```
-
-## Table of Contents  
-1) [Contributions](#Contributions) 
-2) [Usage](#Usage)
-3) [Pretrained Models](#Pretrained-Models) 
-4) [Training](#Training)
-5) [Evaluation](#Evaluation)
-6) [Future Work?](#Future-Work)  
-
-## Contributions
-
-1. We explore how ViTs demonstrate strong robustness against severe occlusions for foreground objects, non-salient background and random patch locations, when compared with state-of-the-art CNNs. 
-2. In relation to making decisions based off texture vs shape, we establish how ViTs are more shape biased than CNNs, and train them to reach shape recognition abilities comparable to humans. 
-3. We highlight ViTs' better robustness to nuisance factors such as patch permutations, adversarial perturbations and common natural corruptions (e.g., noise, blur, contrast and pixelation artefacts) in comparison to CNNs.
-4. We present a methodology for using off-the-shelf ViT features that generalize exceptionally well to new domains e.g., few-shot learning, fine-grained recognition, scene classification and long-tail recognition settings.
 
 <p align="center">
-  <img src="https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/images/intro.png" width="50%" alt="explanation"/>
+  <img src="https://kahnchana.github.io/opl/images/opl_intro.png " alt="Photo" style="width: 90%;"/> 
 </p>
 
 
-## Usage
-TBA
+<h3 style="margin-top: 60px;"> Abstract </h3>
+_Deep neural networks have achieved remarkable performance on a range of classification tasks, with softmax cross-entropy (CE) loss emerging as the de-facto objective function. The CE loss encourages features of a class to have a higher projection score on the true class-vector compared to the negative classes. However, this is a relative constraint and does not explicitly force different class features to be well-separated. Motivated by the observation that ground-truth class representations in CE loss are orthogonal (one-hot encoded vectors), we develop a novel loss function termed "Orthogonal Projection Loss" (OPL) which imposes orthogonality in the feature space. OPL augments the properties of CE loss and directly enforces inter-class separation alongside intra-class clustering in the feature space through orthogonality constraints on the mini-batch level. As compared to other alternatives of CE, OPL offers unique advantages e.g., no additional learnable parameters, does not require careful negative mining and is not sensitive to the batch size. Given the plug-and-play nature of OPL, we evaluate it on a diverse range of tasks including image recognition (CIFAR-100), large-scale classification (ImageNet), domain generalization (PACS) and few-shot learning (miniImageNet, CIFAR-FS, tiered-ImageNet and Meta-dataset) and demonstrate its effectiveness across the board. Furthermore, OPL offers better robustness against practical nuisances such as adversarial attacks and label noise. Our code is hosted publicly [here](http://github.com/kahnchana/opl)._ 
 
 
-## Pretrained Models
-TBA
 
-
-## Training
-TBA
-
-## Evaluation
-TBA
-
-## Future Work
-TBA

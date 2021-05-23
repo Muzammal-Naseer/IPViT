@@ -1,0 +1,7 @@
+# please use `bundle exec jekyll serve` to get same output as when on github.io
+
+theme: jekyll-theme-slate
+
+title: [Intriguing Properties of Vision Transformers]
+
+
