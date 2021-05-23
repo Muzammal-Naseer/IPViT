@@ -24,3 +24,40 @@
       primaryClass={cs.CV}
 }
 ```
+
+## Table of Contents  
+1) [Contributions](#Contributions) 
+2) [Usage](#Usage)
+3) [Pretrained Models](#Pretrained-Models) 
+4) [Training](#Training)
+5) [Evaluation](#Evaluation)
+6) [Future Work?](#Future-Work)  
+
+## Contributions
+
+1. We explore how ViTs demonstrate strong robustness against severe occlusions for foreground objects, non-salient background and random patch locations, when compared with state-of-the-art CNNs. 
+2. In relation to making decisions based off texture vs shape, we establish how ViTs are more shape biased than CNNs, and train them to reach shape recognition abilities comparable to humans. 
+3. We highlight ViTs' better robustness to nuisance factors such as patch permutations, adversarial perturbations and common natural corruptions (e.g., noise, blur, contrast and pixelation artefacts) in comparison to CNNs.
+4. We present a methodology for using off-the-shelf ViT features that generalize exceptionally well to new domains e.g., few-shot learning, fine-grained recognition, scene classification and long-tail recognition settings.
+
+<p align="center">
+  <img src="https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/images/intro.png" width="50%" alt="explanation"/>
+</p>
+
+
+## Usage
+TBA
+
+
+## Pretrained Models
+TBA
+
+
+## Training
+TBA
+
+## Evaluation
+TBA
+
+## Future Work
+TBA
