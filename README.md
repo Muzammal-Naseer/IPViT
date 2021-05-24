@@ -34,6 +34,7 @@
 4) Code for evaluation of permutation invaraince. 
 5) Pretrained models to study the effect of varying patch sizes and positional encoding.
 6) Pretrained adversarial patches and code to evalute them.
+7) Training on Stylized Imagenet.
 
 
 <!-- ## Table of Contents  
