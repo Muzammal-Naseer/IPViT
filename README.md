@@ -16,10 +16,10 @@
 
 ```bibtex
 @misc{naseer2021intriguing,
-      title={TBA}, 
-      author={TBA},
+      title={Intriguing Properties of Vision Transformers}, 
+      author={Muzammal Naseer and Kanchana Ranasinghe and Salman Khan and Munawar Hayat and Fahad Shahbaz Khan and Ming-Hsuan Yang},
       year={2021},
-      eprint={TBA},
+      eprint={2105.10497},
       archivePrefix={arXiv},
       primaryClass={cs.CV}
 }
