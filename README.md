@@ -37,6 +37,23 @@
 7) Training on Stylized Imagenet.
 
 
+## Shape Biased Models
+Our shape biased pretrained models can be downloaded from [here](). Code for evaluating their shape bias using auto
+segmentation on the PASCAL VOC dataset can be found under scripts. Please fix any paths as necessary. You may place 
+the VOC devkit folder under `data/voc` of fix the paths appropriately.
+
+Running segmentation evaluation on models: 
+```bash
+./scripts/eval_segmentation.sh
+```
+
+Visualizing segmentation for images in a given folder:
+```bash
+./scripts/visualize_segmentation.sh
+``` 
+
+
+
 <!-- ## Table of Contents  
 1) [Contributions](#Contributions) 
 2) [Usage](#Usage)
