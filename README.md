@@ -28,11 +28,11 @@
 
 ### We are in the process of cleaning our code. We will update this repo shortly. Here are the highlights of what to expect :)
 
-1) Pretrained ViT models trained on Stylized ImageNet (along with distilled ones). We will provide code to use these models for auto-segmentation.
-2) Training and Evaluations for our proposed off-the-shelf ensemble features.
+1) ~~Pretrained ViT models trained on Stylized ImageNet (along with distilled ones). We will provide code to use these models for auto-segmentation~~.
+2) ~~Training and Evaluations for our proposed off-the-shelf ensemble features.~~
 3) Code to evaluate any model on our proposed occulusion stratagies (random, foreground and background). 
 4) Code for evaluation of permutation invaraince. 
-5) Pretrained models to study the effect of varying patch sizes and positional encoding.
+5) ~~Pretrained models to study the effect of varying patch sizes and positional encoding.~~
 6) Pretrained adversarial patches and code to evalute them.
 7) Training on Stylized Imagenet.
 
@@ -66,8 +66,15 @@ Run training and evaluation for a selected dataset (aircraft by default) using s
 ./scripts/classify_md.sh
 ```
 
-
-
+## Varying Patch Sizes and Positional Encoding
+Pretrained models to study the effect of varying patch sizes and positional encoding: 
+| DeiT-T Model 	| Top-1 	| Top-5 	| Pretrained 	|
+|:------------:	|:-----:	|:-----:	|:----------:	|
+| No Pos. Enc. 	|  68.3 	|  89.0 	|    [Link](https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/v0/no_pos_deit_t.pth)    	|
+|   Patch 22   	|  68.7 	|  89.0 	|    [Link](https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/v0/patch_22_deit_t.pth)    	|
+|   Patch 28   	|  65.2 	|  86.7 	|    [Link](https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/v0/patch_28_deit_t.pth)    	|
+|   Patch 32   	|  63.1 	|  85.3 	|    [Link](https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/v0/patch_32_deit_t.pth)    	|
+|   Patch 38   	|  55.2 	|  78.8 	|    [Link](https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/v0/patch_38_deit_t.pth)    	|
 
 <!-- ## Table of Contents  
 1) [Contributions](#Contributions) 
