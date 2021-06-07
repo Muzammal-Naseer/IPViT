@@ -91,6 +91,9 @@ Pretrained models to study the effect of varying patch sizes and positional enco
 
 
 
+## References
+Code borrowed from [DeiT](https://github.com/facebookresearch/deit) and [DINO](https://github.com/facebookresearch/dino) repositaries. 
+
 <!-- ## Table of Contents  
 1) [Contributions](#Contributions) 
 2) [Usage](#Usage)
