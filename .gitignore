@@ -1,5 +1,7 @@
 # Project related
-
+/ckpts
+/data/voc
+/wandb
 
 # Pycharm
 .idea

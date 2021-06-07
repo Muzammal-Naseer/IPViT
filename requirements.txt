@@ -1,0 +1,10 @@
+torch~=1.7.1
+torchvision~=0.8.2
+einops~=0.3.0
+timm~=0.3.2
+numpy~=1.18.5
+tqdm~=4.54.0
+wandb~=0.10.23
+pillow~=8.0.1
+matplotlib~=3.3.3
+scikit-image~=0.18.1
