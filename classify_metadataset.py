@@ -55,6 +55,7 @@ def get_dataset(name, mean, std, batch_size=256, data_root=None):
     else:
         raise NotImplementedError(f"Dataset {name} not implemented")
 
+    print(f"Loaded {name} dataset containing {len(train_dataset)} train images and {len(test_dataset)} test images")
     train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, drop_last=True, shuffle=True)
     test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, drop_last=False)
 

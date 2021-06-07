@@ -36,6 +36,11 @@
 6) Pretrained adversarial patches and code to evalute them.
 7) Training on Stylized Imagenet.
 
+## Requirements
+```bash
+pip install -r requirements.txt
+```
+
 
 ## Shape Biased Models
 Our shape biased pretrained models can be downloaded from [here](). Code for evaluating their shape bias using auto
@@ -51,6 +56,16 @@ Visualizing segmentation for images in a given folder:
 ```bash
 ./scripts/visualize_segmentation.sh
 ``` 
+
+
+## Off the Shelf Classification
+Training code for off-the-shelf experiment in `classify_metadataset.py`. Seven datasets (aircraft CUB DTD fungi GTSRB Places365 INAT) available by default. Set the appropriate dir path in `classify_md.sh` by fixing `DATA_PATH`. 
+
+Run training and evaluation for a selected dataset (aircraft by default) using selected model (DeiT-T by default):
+```bash
+./scripts/classify_md.sh
+```
+
 
 
 
