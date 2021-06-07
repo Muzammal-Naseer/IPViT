@@ -30,8 +30,8 @@
 
 1) ~~Pretrained ViT models trained on Stylized ImageNet (along with distilled ones). We will provide code to use these models for auto-segmentation~~.
 2) ~~Training and Evaluations for our proposed off-the-shelf ensemble features.~~
-3) Code to evaluate any model on our proposed occulusion stratagies (random, foreground and background). 
-4) Code for evaluation of permutation invaraince. 
+3) ~~Code to evaluate any model on our proposed occulusion stratagies (random, foreground and background).~~ 
+4) ~~Code for evaluation of permutation invaraince.~~ 
 5) ~~Pretrained models to study the effect of varying patch sizes and positional encoding.~~
 6) Pretrained adversarial patches and code to evalute them.
 7) Training on Stylized Imagenet.
@@ -66,6 +66,19 @@ Run training and evaluation for a selected dataset (aircraft by default) using s
 ./scripts/classify_md.sh
 ```
 
+## Occlusion Evaluation
+Evaluation on ImageNet val set (change path in script) for our proposed occlusion techniques:
+```bash
+./scripts/evaluate_occlusion.sh
+```
+
+## Permutation Invariance Evaluation
+Evaluation on ImageNet val set (change path in script) for the shuffle operation:
+```bash
+./scripts/evaluate_shuffle.sh
+```
+
+
 ## Varying Patch Sizes and Positional Encoding
 Pretrained models to study the effect of varying patch sizes and positional encoding: 
 | DeiT-T Model 	| Top-1 	| Top-5 	| Pretrained 	|
@@ -75,6 +88,8 @@ Pretrained models to study the effect of varying patch sizes and positional enco
 |   Patch 28   	|  65.2 	|  86.7 	|    [Link](https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/v0/patch_28_deit_t.pth)    	|
 |   Patch 32   	|  63.1 	|  85.3 	|    [Link](https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/v0/patch_32_deit_t.pth)    	|
 |   Patch 38   	|  55.2 	|  78.8 	|    [Link](https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/v0/patch_38_deit_t.pth)    	|
+
+
 
 <!-- ## Table of Contents  
 1) [Contributions](#Contributions) 

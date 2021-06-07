@@ -92,6 +92,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Transformers')
     parser.add_argument('--test_dir', default='/home/kanchanaranasinghe/data/raw/imagenet/val',
                         help='ImageNet Validation Data')
+    parser.add_argument('--exp_name', default=None, help='pretrained weight path')
     parser.add_argument('--model_name', type=str, default='deit_small_patch16_224', help='Model Name')
     parser.add_argument('--scale_size', type=int, default=256, help='')
     parser.add_argument('--img_size', type=int, default=224, help='')
@@ -104,6 +105,7 @@ def parse_args():
     parser.add_argument('--shuffle_h', type=int, default=None, help='h of hxw grid', nargs='*')
     parser.add_argument('--shuffle_w', type=int, default=None, help='w of hxw grid', nargs='*')
     parser.add_argument('--random_drop', action='store_true', default=False, help="randomly drop patches")
+    parser.add_argument('--random_offset_drop', action='store_true', default=False, help="randomly drop patches")
     parser.add_argument('--cascade', action='store_true', default=False, help="run cascade evaluation")
     parser.add_argument('--exp_count', type=int, default=1, help='random experiment count to average over')
     parser.add_argument('--saliency', action='store_true', default=False, help="drop using saliency")
@@ -362,3 +364,10 @@ def parse_train_arguments():
     parser.add_argument('--no-repeated-aug', action='store_false', dest='repeated_aug')
 
     return parser.parse_args()
+
+
+def normalize(t, mean, std):
+    t[:, 0, :, :] = (t[:, 0, :, :] - mean[0]) / std[0]
+    t[:, 1, :, :] = (t[:, 1, :, :] - mean[1]) / std[1]
+    t[:, 2, :, :] = (t[:, 2, :, :] - mean[2]) / std[2]
+    return t
