@@ -20,7 +20,7 @@ python evaluate_segmentation.py \
 # SIN trained model
 python evaluate_segmentation.py \
   --model_name "dino_small" \
-  --pretrained_weights "ckpts/SIN/DeiT_S_SIN/checkpoint.pth" \
+  --pretrained_weights "https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/v0/deit_s_sin.pth" \
   --batch_size 256 \
   --patch_size 16 \
   --threshold 0.9
@@ -28,7 +28,7 @@ python evaluate_segmentation.py \
 # SIN distilled model (class token)
 python evaluate_segmentation.py \
   --model_name "dino_small_dist" \
-  --pretrained_weights "ckpts/SIN/DeiT_S_SIN_dist/checkpoint.pth" \
+  --pretrained_weights "https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/v0/deit_s_sin_dist.pth" \
   --batch_size 256 \
   --patch_size 16 \
   --threshold 0.9
@@ -36,7 +36,7 @@ python evaluate_segmentation.py \
 # SIN distilled model (shape token)
 python evaluate_segmentation.py \
   --model_name "dino_small_dist" \
-  --pretrained_weights "ckpts/SIN/DeiT_S_SIN_dist/checkpoint.pth" \
+  --pretrained_weights "https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/v0/deit_s_sin_dist.pth" \
   --batch_size 256 \
   --patch_size 16 \
   --threshold 0.9 \
@@ -48,7 +48,7 @@ python evaluate_segmentation.py \
 #  --pretrained_weights "https://dl.fbaipublicfiles.com/deit/deit_tiny_patch16_224-a1311bcf.pth" \
 
 #  --model_name "dino_tiny" \
-#  --pretrained_weights "ckpts/SIN/DeiT_T_SIN/checkpoint.pth" \
+#  --pretrained_weights "https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/v0/deit_t_sin.pth" \
 
 #  --model_name "dino_tiny_dist" \
-#  --pretrained_weights "ckpts/SIN/DeiT_T_SIN_dist/checkpoint.pth" \
+#  --pretrained_weights "https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/v0/deit_t_sin_dist.pth" \
