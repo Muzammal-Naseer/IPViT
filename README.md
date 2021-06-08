@@ -16,7 +16,7 @@
 
 ## Contents
 1) [Shape Biased Models](#shape-biased-models)
-2) [Off the Shelf Classification](#off-the-shelf-classification)
+2) [Off the Shelf Features](#off-the-shelf-features)
 3) [Global Image Context](#global-image-context-occlusion--shuffle)
 4) [Varying Patch Sizes and Positional Encoding](#varying-patch-sizes-and-positional-encoding)
 5) [References](#references)
@@ -93,7 +93,7 @@ python evaluate_segmentation.py \
 ```
 
 
-## Off the Shelf Classification 
+## Off the Shelf Features
 <sup>([top](#contents))</sup>
 Training code for off-the-shelf experiment in `classify_metadataset.py`. Seven datasets (aircraft, CUB, DTD, fungi, GTSRB, Places365, and INAT) available by default. Set the appropriate dir path in `classify_md.sh` by fixing `DATA_PATH`. Note that for the ResNet baselines, we adopt the PyTorch official models. All training on transfer dataset is limited to updating a final linear layer using a standard training schedule.  
 
