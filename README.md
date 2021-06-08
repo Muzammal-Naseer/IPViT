@@ -237,6 +237,7 @@ Code borrowed from [DeiT](https://github.com/facebookresearch/deit) and [DINO](h
 
 
 ## Citation
+If you find our work, this repository and pretrained Transformers useful. Please consider giving a star :star: and citation.
 ```bibtex
 @misc{naseer2021intriguing,
       title={Intriguing Properties of Vision Transformers}, 
