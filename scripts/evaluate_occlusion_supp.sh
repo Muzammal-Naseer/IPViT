@@ -1,8 +1,6 @@
 #!/bin/bash
 
 DATA_PATH="PATH/TO/IMAGENET/val"
-DATA_PATH="$HOME/data/raw/imagenet/val"
-
 
 # use 8 x 8 grid of patches to drop
 python evaluate.py \
