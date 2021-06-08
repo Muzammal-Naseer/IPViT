@@ -8,3 +8,4 @@ from .t2t_vit_ghost import *
 from .t2t_vit_se import *
 from .tnt import *
 from .vit import *
+from .resnet import drop_resnet50

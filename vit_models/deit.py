@@ -2,6 +2,7 @@
 # All rights reserved.
 import math
 
+import numpy as np
 import torch
 import torch.nn as nn
 from functools import partial
@@ -11,7 +12,6 @@ from timm.models.registry import register_model
 from timm.models.layers import trunc_normal_
 
 import random
-
 
 __all__ = [
     'deit_tiny_patch16_224', 'deit_small_patch16_224', 'deit_base_patch16_224',
@@ -59,17 +59,17 @@ class DistilledVisionTransformer(VisionTransformer):
         x = [self.head(x) for x, _ in list_out]
         x_dist = [self.head_dist(x_dist) for _, x_dist in list_out]
         if self.training:
-            return [(out, out_dist)  for out, out_dist in zip(x, x_dist)]
+            return [(out, out_dist) for out, out_dist in zip(x, x_dist)]
         else:
             # during inference, return the average of both classifier predictions
-            return [(out+out_dist) / 2 for out, out_dist in zip(x, x_dist)]
+            return [(out + out_dist) / 2 for out, out_dist in zip(x, x_dist)]
 
 
 class VanillaVisionTransformer(VisionTransformer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-    def forward_features(self, x):
+    def forward_features(self, x, block_index=None, drop_rate=0):
         # taken from https://github.com/rwightman/pytorch-image-models/blob/master/timm/models/vision_transformer.py
         # with slight modifications to add the dist_token
         B, nc, w, h = x.shape
@@ -104,6 +104,14 @@ class VanillaVisionTransformer(VisionTransformer):
 
         layer_wise_tokens = []
         for idx, blk in enumerate(self.blocks):
+
+            if block_index is not None and idx == block_index:
+                token = x[:, :1, :]
+                features = x[:, 1:, :]
+                row = np.random.choice(range(x.shape[1] - 1), size=int(drop_rate*x.shape[1]), replace=False)
+                features[:, row, :] = 0.0
+                x = torch.cat((token, features), dim=1)
+
             x = blk(x)
             layer_wise_tokens.append(x)
 
@@ -111,13 +119,14 @@ class VanillaVisionTransformer(VisionTransformer):
 
         return [x[:, 0] for x in layer_wise_tokens], [x for x in layer_wise_tokens]
 
-    def forward(self, x, patches=False):
-        list_out, patch_out = self.forward_features(x)
+    def forward(self, x, block_index=None, drop_rate=0, patches=False):
+        list_out, patch_out = self.forward_features(x, block_index, drop_rate)
         x = [self.head(x) for x in list_out]
         if patches:
             return x, patch_out
         else:
             return x
+
 
 @register_model
 def deit_tiny_patch16_224(pretrained=False, **kwargs):
