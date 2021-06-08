@@ -1,7 +1,6 @@
 #!/bin/bash
 
 DATA_PATH="PATH/TO/IMAGENET/val"
-DATA_PATH="$HOME/data/raw/imagenet/val"
 
 python evaluate.py \
   --model_name deit_tiny_patch16_224 \

@@ -14,15 +14,13 @@
 
 ![demo](.github/demo.png)
 
-### We are in the process of cleaning our code. We will update this repo shortly. Here are the highlights of what to expect :)
-
-1) ~~Pretrained ViT models trained on Stylized ImageNet (along with distilled ones). We will provide code to use these models for auto-segmentation~~.
-2) ~~Training and Evaluations for our proposed off-the-shelf ensemble features.~~
-3) ~~Code to evaluate any model on our proposed occulusion stratagies (random, foreground and background).~~ 
-4) ~~Code for evaluation of permutation invaraince.~~ 
-5) ~~Pretrained models to study the effect of varying patch sizes and positional encoding.~~
-6) Pretrained adversarial patches and code to evalute them.
-7) Training on Stylized Imagenet.
+## Contents
+1) [Shape Biased Models](#shape-biased-models)
+2) [Off the Shelf Classification](#off-the-shelf-classification)
+3) [Image Corruptions](#image-corruptions-occlusion--shuffle)
+4) [Varying Patch Sizes and Positional Encoding](#varying-patch-sizes-and-positional-encoding)
+5) [References](#references)
+6) [Citation](#citation)
 
 ## Requirements
 ```bash
@@ -30,7 +28,8 @@ pip install -r requirements.txt
 ```
 
 
-## Shape Biased Models
+## Shape Biased Models 
+<sup>([top](#contents))</sup>
 Our shape biased pretrained models can be downloaded from [here](https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/tag/v0). We summarise the performance of each model below.
 
 |          Model         	| Jaccard Index 	| Pretrained 	|
@@ -94,10 +93,11 @@ python evaluate_segmentation.py \
 ```
 
 
-## Off the Shelf Classification
+## Off the Shelf Classification 
+<sup>([top](#contents))</sup>
 Training code for off-the-shelf experiment in `classify_metadataset.py`. Seven datasets (aircraft, CUB, DTD, fungi, GTSRB, Places365, and INAT) available by default. Set the appropriate dir path in `classify_md.sh` by fixing `DATA_PATH`. Note that for the ResNet baselines, we adopt the PyTorch official models. All training on transfer dataset is limited to updating a final linear layer using a standard training schedule.  
 
-![off_shelf](.github/off_shelf.png)
+[comment]: < ![off_shelf](.github/off_shelf.png) >
 
 ### Direct Implementation
 Run training and evaluation for a selected dataset (aircraft by default) using selected model (DeiT-T by default):
@@ -106,7 +106,7 @@ Run training and evaluation for a selected dataset (aircraft by default) using s
 ```
 
 ### Additional Details
-Set the `DATASET` variable to one of `aircraft`, `CUB`, `DTD`, `fungi`, `GTSRB`, `Places365`, or `INAT` and model to one of `resnet50`, `deit-tiny`, or `deit-small`. Variable `EXP_NAME` can be set to any name (will be used for logging). 
+Set the `DATASET` variable to one of `aircraft`, `CUB`, `DTD`, `fungi`, `GTSRB`, `Places365`, or `INAT` and model to one of `resnet50`, `deit-tiny`, or `deit-small`. Variable `EXP_NAME` can be set to any name (will be used for logging). Environment variable `DATA_PATH` should direct to the relevant dataset root directory. Note that all dataset classes are simple modifications of the standard torchvision ImageFolder class. 
 ```bash
 python classify_metadataset.py \
   --datasets "$DATASET" \
@@ -119,21 +119,99 @@ python classify_metadataset.py \
 ```
 
 
-## Occlusion Evaluation
-Evaluation on ImageNet val set (change path in script) for our proposed occlusion techniques:
+## Image Corruptions (Occlusion & Shuffle)
+<sup>([top](#contents))</sup>
+We apply various occlusions and shuffle operations on images to explore the robust properties of ViT models. All evaluation is carried out on the ImageNet 2012 validation set. 
+
+### Direct Implementation
+For direct evaluation on ImageNet val set (change path in script) using our proposed occlusion techniques and shuffle operation run:
 ```bash
 ./scripts/evaluate_occlusion.sh
+./scripts/evaluate_shuffle.sh
+./scripts/evaluate_occlusion_supp.sh
 ```
 
-## Permutation Invariance Evaluation
-Evaluation on ImageNet val set (change path in script) for the shuffle operation:
+### Additional Occlusion Details
+We present three patch based occlusion methods Random, Salient, and Non-Salient PatchDrop. For all scripts, the environment variable `DATA_PATH` should direct to the ImageNet dataset validation directory. Evaluation of a pretrained model under Random PatchDrop technique can be done as below:
 ```bash
-./scripts/evaluate_shuffle.sh
+python evaluate.py \
+  --model_name deit_small_patch16_224 \
+  --test_dir "$DATA_PATH" \
+  --pretrained "https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth" \
+  --random_drop
+```
+Evaluation of a pretrained model under Salient & Non-Salient PatchDrop technique can be done as below. This method borrows from [DINO](https://github.com/facebookresearch/dino) to select foreground and background pixels. 
+```bash
+python evaluate.py \
+  --model_name deit_small_patch16_224 \
+  --test_dir "$DATA_PATH" \
+  --pretrained "https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth" \
+  --dino
+```
+
+We also experiment with Random PatchDrop under varied settings involving different grids sizes, at pixel level, with grid offsets, and also applying on intermediate feature maps. The defaults settings evaluates on a 14x14 grid. To evaluate on different grid sizes, run following (8x8 default - replace with desired):
+ ```bash
+python evaluate.py \
+  --model_name deit_tiny_patch16_224 \
+  --test_dir "$DATA_PATH" \
+  --random_drop \
+  --shuffle_size 8 8 
+```
+
+Evaluate at pixel level as follows (when grid size is equivalent to image dimensions):
+```bash
+python evaluate.py \
+  --model_name deit_tiny_patch16_224 \
+  --test_dir "$DATA_PATH" \
+  --random_drop \
+  --shuffle_size 224 224
+```
+
+Using a grid with an offset: 
+```bash
+python evaluate.py \
+  --model_name deit_tiny_patch16_224 \
+  --test_dir "$DATA_PATH" \
+  --random_drop \
+  --random_offset_drop
+```
+
+Intermediate feature drop on DeiT models:
+```bash
+python evaluate.py \
+  --model_name deit_tiny_patch16_224 \
+  --test_dir "$DATA_PATH" \
+  --lesion \
+  --block_index 0 2 4 8 10
+```
+
+Intermediate feature drop on ResNet50:
+```bash
+python evaluate.py \
+  --model_name resnet_drop \
+  --test_dir "$DATA_PATH" \
+  --lesion \
+  --block_index 1 2 3 4 5
+```
+
+Note that intermediate feature drop is dependent on network architecture. Currently, only three DeiT variants (tiny, small, base) and ResNet50 are supported.
+
+### Additional Shuffle Details
+Evaluate under the shuffle operation setting using a range of grid sizes to observe robustness to permutation invariance as follows:
+```bash
+python evaluate.py \
+  --model_name deit_tiny_patch16_224 \
+  --test_dir "$DATA_PATH" \
+  --shuffle \
+  --shuffle_h 2 2 4 4 8 14 16 \
+  --shuffle_w 2 4 4 8 8 14 16 \
+
 ```
 
 
 ## Varying Patch Sizes and Positional Encoding
-Pretrained models to study the effect of varying patch sizes and positional encoding: 
+<sup>([top](#contents))</sup>
+We present pretrained models to study the effect of varying patch sizes and positional encoding: 
 | DeiT-T Model 	| Top-1 	| Top-5 	| Pretrained 	|
 |:------------:	|:-----:	|:-----:	|:----------:	|
 | No Pos. Enc. 	|  68.3 	|  89.0 	|    [Link](https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/v0/no_pos_deit_t.pth)    	|
@@ -143,8 +221,18 @@ Pretrained models to study the effect of varying patch sizes and positional enco
 |   Patch 38   	|  55.2 	|  78.8 	|    [Link](https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/v0/patch_38_deit_t.pth)    	|
 
 
+## To Be Added
+1) ~~Pretrained ViT models trained on Stylized ImageNet (along with distilled ones). We will provide code to use these models for auto-segmentation~~.
+2) ~~Training and Evaluations for our proposed off-the-shelf ensemble features.~~
+3) ~~Code to evaluate any model on our proposed occulusion stratagies (random, foreground and background).~~ 
+4) ~~Code for evaluation of permutation invaraince.~~ 
+5) ~~Pretrained models to study the effect of varying patch sizes and positional encoding.~~
+6) Pretrained adversarial patches and code to evalute them.
+7) Training on Stylized Imagenet.
+
 
 ## References
+<sup>([top](#contents))</sup>
 Code borrowed from [DeiT](https://github.com/facebookresearch/deit) and [DINO](https://github.com/facebookresearch/dino) repositories as well as [TIMM](https://github.com/rwightman/pytorch-image-models) library. We thank them for their wonderful code bases. 
 
 

@@ -183,7 +183,16 @@ def main(args, device, verbose=True):
                     pass
                 return 0
 
-            clean_out = model(normalize(img.clone(), mean=mean, std=std))
+            if args.lesion:
+                if "resnet" in args.model_name:
+                    clean_out = model(normalize(img.clone(), mean=mean, std=std), drop_layer=args.block_index,
+                                      drop_percent=args.drop_count)
+                else:
+                    clean_out = model(normalize(img.clone(), mean=mean, std=std), block_index=args.block_index,
+                                      drop_rate=args.drop_count)
+            else:
+                clean_out = model(normalize(img.clone(), mean=mean, std=std))
+
             if isinstance(clean_out, list):
                 clean_out = clean_out[-1]
             clean_acc += torch.sum(clean_out.argmax(dim=-1) == label).item()
@@ -247,6 +256,20 @@ if __name__ == '__main__':
                 acc_dict[f"{'best' if opt.drop_best else 'worst'}"][f"{drop_lambda}"] = acc
         if not opt.test_image:
             json.dump(acc_dict, open(f"report/dino/{opt.model_name}.json", "w"), indent=4)
+
+    elif opt.lesion:
+        for rand_exp in range(opt.exp_count):
+            acc_dict[f"run_{rand_exp:03d}"] = {}
+            block_index_list = opt.block_index
+            for cur_block_num in block_index_list:
+                opt.block_index = cur_block_num
+                acc_dict[f"run_{rand_exp:03d}"][f"{cur_block_num}"] = {}
+                for drop_count in [0.25, 0.50, 0.75]:
+                    opt.drop_count = drop_count
+                    acc = main(args=opt, device=torch.device('cuda:0' if torch.cuda.is_available() else 'cpu'))
+                    acc_dict[f"run_{rand_exp:03d}"][f"{cur_block_num}"][f"{drop_count}"] = acc
+        if not opt.test_image:
+            json.dump(acc_dict, open(f"report/lesion/{opt.model_name}.json", "w"), indent=4)
 
     else:
         print("No arguments specified: finished running")
