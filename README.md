@@ -17,7 +17,7 @@
 ## Contents
 1) [Shape Biased Models](#shape-biased-models)
 2) [Off the Shelf Classification](#off-the-shelf-classification)
-3) [Image Corruptions](#image-corruptions-occlusion--shuffle)
+3) [Global Image Context](#image-corruptions-occlusion--shuffle)
 4) [Varying Patch Sizes and Positional Encoding](#varying-patch-sizes-and-positional-encoding)
 5) [References](#references)
 6) [Citation](#citation)
@@ -119,7 +119,7 @@ python classify_metadataset.py \
 ```
 
 
-## Image Corruptions (Occlusion & Shuffle)
+## Global Image Context (Occlusion & Shuffle)
 <sup>([top](#contents))</sup>
 We apply various occlusions and shuffle operations on images to explore the robust properties of ViT models. All evaluation is carried out on the ImageNet 2012 validation set. 
 
