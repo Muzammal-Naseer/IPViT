@@ -17,7 +17,7 @@
 ## Contents
 1) [Shape Biased Models](#shape-biased-models)
 2) [Off the Shelf Classification](#off-the-shelf-classification)
-3) [Global Image Context](#image-corruptions-occlusion--shuffle)
+3) [Global Image Context](#global-image-context)
 4) [Varying Patch Sizes and Positional Encoding](#varying-patch-sizes-and-positional-encoding)
 5) [References](#references)
 6) [Citation](#citation)
