@@ -4,7 +4,7 @@
 [Kanchana Ranasinghe](https://scholar.google.com/citations?user=K2WBZTwAAAAJ),
 [Salman Khan](https://scholar.google.com/citations?user=M59O9lkAAAAJ&hl=en),
 [Munawar Hayat](https://scholar.google.ch/citations?user=Mx8MbWYAAAAJ&hl=en&oi=ao), 
-[Fahad Shahbaz Khan](https://scholar.google.ch/citations?user=zvaeYnUAAAAJ&hl=en&oi=ao), &
+[Fahad Khan](https://scholar.google.ch/citations?user=zvaeYnUAAAAJ&hl=en&oi=ao), &
 [Ming-Hsuan Yang](https://scholar.google.com/citations?user=p9-ohHsAAAAJ&hl=en)
 
 **[arxiv link](https://arxiv.org/abs/2105.10497)** 
