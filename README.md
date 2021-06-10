@@ -16,8 +16,8 @@
 
 ## Contents
 1) [Shape Biased Models](#shape-biased-models)
-2) [Off the Shelf Classification](#off-the-shelf-classification)
-3) [Image Corruptions](#image-corruptions-occlusion--shuffle)
+2) [Off the Shelf Features](#off-the-shelf-features)
+3) [Global Image Context](#global-image-context-occlusion--shuffle)
 4) [Varying Patch Sizes and Positional Encoding](#varying-patch-sizes-and-positional-encoding)
 5) [References](#references)
 6) [Citation](#citation)
@@ -93,7 +93,7 @@ python evaluate_segmentation.py \
 ```
 
 
-## Off the Shelf Classification 
+## Off the Shelf Features
 <sup>([top](#contents))</sup>
 Training code for off-the-shelf experiment in `classify_metadataset.py`. Seven datasets (aircraft, CUB, DTD, fungi, GTSRB, Places365, and INAT) available by default. Set the appropriate dir path in `classify_md.sh` by fixing `DATA_PATH`. Note that for the ResNet baselines, we adopt the PyTorch official models. All training on transfer dataset is limited to updating a final linear layer using a standard training schedule.  
 
@@ -119,7 +119,7 @@ python classify_metadataset.py \
 ```
 
 
-## Image Corruptions (Occlusion & Shuffle)
+## Global Image Context (Occlusion & Shuffle)
 <sup>([top](#contents))</sup>
 We apply various occlusions and shuffle operations on images to explore the robust properties of ViT models. All evaluation is carried out on the ImageNet 2012 validation set. 
 
@@ -244,6 +244,7 @@ Code borrowed from [DeiT](https://github.com/facebookresearch/deit) and [DINO](h
 
 
 ## Citation
+If you find our work, this repository and pretrained Transformers useful. Please consider giving a star :star: and citation.
 ```bibtex
 @misc{naseer2021intriguing,
       title={Intriguing Properties of Vision Transformers}, 
