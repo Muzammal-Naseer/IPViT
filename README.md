@@ -221,15 +221,22 @@ We present pretrained models to study the effect of varying patch sizes and posi
 |   Patch 38   	|  55.2 	|  78.8 	|    [Link](https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/v0/patch_38_deit_t.pth)    	|
 
 
+## Adversarial Patches
+TBA
+
+## Stylized ImageNet Training
+We generate Stylized ImageNet (SIN) following the [SIN repository](https://github.com/rgeirhos/Stylized-ImageNet). We use the [DeiT](https://github.com/facebookresearch/deit) codebase to perform standard training of DeiT models using the SIN dataset instead of natural ImageNet to obtain SIN only models. The shape distilled models are obtained by using the DeiT distillation mechanism. Training is performed using natural ImageNet. Instead of a CNN trained on natural ImageNet, a CNN (or ViT) trained on SIN is used as the teacher model.  
+
+<!-- 
 ## To Be Added
 1) ~~Pretrained ViT models trained on Stylized ImageNet (along with distilled ones). We will provide code to use these models for auto-segmentation~~.
 2) ~~Training and Evaluations for our proposed off-the-shelf ensemble features.~~
 3) ~~Code to evaluate any model on our proposed occulusion stratagies (random, foreground and background).~~ 
 4) ~~Code for evaluation of permutation invaraince.~~ 
 5) ~~Pretrained models to study the effect of varying patch sizes and positional encoding.~~
-6) Pretrained adversarial patches and code to evalute them.
-7) Training on Stylized Imagenet.
-
+6) Pretrained adversarial patches and code to evaluate them.
+7) ~~Training on Stylized Imagenet.~~
+-->
 
 ## References
 <sup>([top](#contents))</sup>
