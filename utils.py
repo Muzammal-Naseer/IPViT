@@ -86,6 +86,10 @@ def get_model(args, pretrained=True):
         model = create_model(args.model_name, pretrained=pretrained)
         mean = (0.5, 0.5, 0.5)
         std = (0.5, 0.5, 0.5)
+    elif 'regnety' in args.model_name:
+        model = create_model(args.model_name, pretrained=pretrained)
+        mean = (0.485, 0.456, 0.406)
+        std = (0.229, 0.224, 0.225)
     else:
         raise NotImplementedError(f'Please provide correct model names: {model_names}')
 
