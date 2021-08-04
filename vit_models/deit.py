@@ -128,6 +128,28 @@ class VanillaVisionTransformer(VisionTransformer):
             return x
 
 
+class NonSpatialVisionTransformer(VisionTransformer):
+    def __init__(self, *args, **kwargs):
+        super(NonSpatialVisionTransformer, self).__init__(*args, **kwargs)
+        self.pos_embed = None
+        self.pos_drop = None
+
+    def forward_features(self, x):
+        B = x.shape[0]
+        x = self.patch_embed(x)
+
+        cls_tokens = self.cls_token.expand(B, -1, -1)  # stole cls_tokens impl from Phil Wang, thanks
+        x = torch.cat((cls_tokens, x), dim=1)
+        # x = x + self.pos_embed
+        # x = self.pos_drop(x)
+
+        for blk in self.blocks:
+            x = blk(x)
+
+        x = self.norm(x)
+        return x[:, 0]
+
+
 @register_model
 def deit_tiny_patch16_224(pretrained=False, **kwargs):
     model = VanillaVisionTransformer(
@@ -142,6 +164,21 @@ def deit_tiny_patch16_224(pretrained=False, **kwargs):
         model.load_state_dict(checkpoint["model"])
     return model
 
+
+@register_model
+def deit_tiny_patch16_224_no_pos(pretrained=False, **kwargs):
+    model = NonSpatialVisionTransformer(
+        patch_size=16, embed_dim=192, depth=12, num_heads=3, mlp_ratio=4, qkv_bias=True,
+        norm_layer=partial(nn.LayerNorm, eps=1e-6), **kwargs)
+    model.default_cfg = _cfg()
+    if pretrained:
+        checkpoint = torch.hub.load_state_dict_from_url(
+            url="https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/"
+                "v0/no_pos_deit_t.pth",
+            map_location="cpu", check_hash=True
+        )
+        model.load_state_dict(checkpoint["model"])
+    return model
 
 @register_model
 def deit_small_patch16_224(pretrained=False, **kwargs):
