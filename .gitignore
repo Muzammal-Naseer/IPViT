@@ -2,6 +2,7 @@
 /ckpts
 /data/voc
 /wandb
+/report
 
 # Pycharm
 .idea

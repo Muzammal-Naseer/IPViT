@@ -6,6 +6,7 @@ import numpy as np
 import torch
 import torchvision
 import torchvision.models as models
+import timm
 from timm.models import create_model
 from torch.utils.data import DataLoader
 from torchvision import transforms
@@ -45,6 +46,7 @@ def get_model(args, pretrained=True):
     model_names = sorted(name for name in models.__dict__
                          if name.islower() and not name.startswith("__")
                          and callable(models.__dict__[name]))
+    timm_model_names = timm.list_models(pretrained=True)
 
     if args.model_name in model_names:
         model = models.__dict__[args.model_name](pretrained=pretrained)
@@ -86,7 +88,7 @@ def get_model(args, pretrained=True):
         model = create_model(args.model_name, pretrained=pretrained)
         mean = (0.5, 0.5, 0.5)
         std = (0.5, 0.5, 0.5)
-    elif 'regnety' in args.model_name:
+    elif args.model_name in timm_model_names:
         model = create_model(args.model_name, pretrained=pretrained)
         mean = (0.485, 0.456, 0.406)
         std = (0.229, 0.224, 0.225)
