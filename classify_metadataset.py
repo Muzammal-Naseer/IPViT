@@ -4,7 +4,7 @@ import wandb
 from timm.optim import create_optimizer
 from torchvision import transforms, datasets
 
-from datasets import CUBDataset, DTDDataset, FungiDataset, AircraftDataset, GTSRBDataset, INatDataset
+from datasets import CUBDataset, DTDDataset, FungiDataset, AircraftDataset, GTSRBDataset, INatDataset, Flowers102Dataset
 from models.models import deit_tiny_patch16_224, deit_small_patch16_224, resnet18, resnet50
 from utils import parse_train_arguments, train_epoch, validate_epoch
 
@@ -52,6 +52,11 @@ def get_dataset(name, mean, std, batch_size=256, data_root=None):
             data_root = "/home/kanchanaranasinghe/data/raw/iNaturalist"
         train_dataset = INatDataset(image_root_path=f"{data_root}", transform=data_transform, split="train")
         test_dataset = INatDataset(image_root_path=f"{data_root}", transform=data_transform, split="val")
+    elif name == "flowers102":
+        if data_root is None:
+            data_root = "/home/kanchanaranasinghe/data/metadataset/102flowers"
+        train_dataset = Flowers102Dataset(image_root_path=f"{data_root}", transform=data_transform, split="trainval")
+        test_dataset = Flowers102Dataset(image_root_path=f"{data_root}", transform=data_transform, split="test")
     else:
         raise NotImplementedError(f"Dataset {name} not implemented")
 
