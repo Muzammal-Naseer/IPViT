@@ -14,17 +14,6 @@
 
 ![demo](.github/demo.png)
 
-## Citation
-If you find our work, this repository and pretrained Transformers useful. Please consider giving a star :star: and citation.
-```bibtex
-@InProceedings{naseer2021intriguing,
-      title={Intriguing Properties of Vision Transformers}, 
-      author={Muzammal Naseer and Kanchana Ranasinghe and Salman Khan and Munawar Hayat and Fahad Shahbaz Khan and Ming-Hsuan Yang},
-      booktitle={Adv. Neural Inform. Process. Syst.},
-      year={2021}
-}
-```
-
 
 ## Contents
 1) [Shape Biased Models](#shape-biased-models)
@@ -32,6 +21,7 @@ If you find our work, this repository and pretrained Transformers useful. Please
 3) [Global Image Context](#global-image-context-occlusion--shuffle)
 4) [Varying Patch Sizes and Positional Encoding](#varying-patch-sizes-and-positional-encoding)
 5) [References](#references)
+6) [Citation](#citation)
 
 ## Requirements
 ```bash
@@ -252,3 +242,17 @@ We generate Stylized ImageNet (SIN) following the [SIN repository](https://githu
 ## References
 <sup>([top](#contents))</sup>
 Code borrowed from [DeiT](https://github.com/facebookresearch/deit) and [DINO](https://github.com/facebookresearch/dino) repositories as well as [TIMM](https://github.com/rwightman/pytorch-image-models) library. We thank them for their wonderful code bases. 
+
+
+## Citation
+If you find our work, this repository and pretrained Transformers useful. Please consider giving a star :star: and citation.
+```bibtex
+@misc{naseer2021intriguing,
+      title={Intriguing Properties of Vision Transformers}, 
+      author={Muzammal Naseer and Kanchana Ranasinghe and Salman Khan and Munawar Hayat and Fahad Shahbaz Khan and Ming-Hsuan Yang},
+      year={2021},
+      eprint={2105.10497},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
