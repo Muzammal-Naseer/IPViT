@@ -248,11 +248,12 @@ Code borrowed from [DeiT](https://github.com/facebookresearch/deit) and [DINO](h
 If you find our work, this repository and pretrained Transformers useful. Please consider giving a star :star: and citation.
 ```bibtex
 @inproceedings{
-  naseer2021intriguing,
-  title={Intriguing Properties of Vision Transformers},
-  author={Muzammal Naseer and Kanchana Ranasinghe and Salman Khan and Munawar Hayat and Fahad Khan and Ming-Hsuan Yang},
-  booktitle={Thirty-Fifth Conference on Neural Information Processing Systems},
-  year={2021},
-  url={https://openreview.net/forum?id=o2mbl-Hmfgd}
+naseer2021intriguing,
+title={Intriguing Properties of Vision Transformers},
+author={Muzammal Naseer and Kanchana Ranasinghe and Salman Khan and Munawar Hayat and Fahad Khan and Ming-Hsuan Yang},
+booktitle={Advances in Neural Information Processing Systems},
+editor={A. Beygelzimer and Y. Dauphin and P. Liang and J. Wortman Vaughan},
+year={2021},
+url={https://openreview.net/forum?id=o2mbl-Hmfgd}
 }
 ```
