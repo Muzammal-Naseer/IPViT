@@ -241,8 +241,7 @@ We generate Stylized ImageNet (SIN) following the [SIN repository](https://githu
 
 ## References
 <sup>([top](#contents))</sup>
-Code borrowed from [DeiT](https://github.com/facebookresearch/deit) and [DINO](https://github.com/facebookresearch/dino) repositories as well as [TIMM](https://github.com/rwightman/pytorch-image-models) library. We thank them for their wonderful code bases. 
-
+Code is based on [DeiT](https://github.com/facebookresearch/deit) repository and [TIMM](https://github.com/rwightman/pytorch-image-models) library. We thank the authors for releasing their codes. 
 
 ## Citation
 If you find our work, this repository and pretrained Transformers useful. Please consider giving a star :star: and citation.
