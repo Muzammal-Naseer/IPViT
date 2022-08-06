@@ -14,14 +14,14 @@ from tqdm import tqdm
 from utils import get_voc_dataset, get_model, parse_args
 
 
-def get_attention_masks(args, image, model):
+def get_attention_masks(args, image, model, device):
     # make the image divisible by the patch size
     w, h = image.shape[2] - image.shape[2] % args.patch_size, image.shape[3] - image.shape[3] % args.patch_size
     image = image[:, :w, :h]
     w_featmap = image.shape[-2] // args.patch_size
     h_featmap = image.shape[-1] // args.patch_size
 
-    attentions = model.forward_selfattention(image.cuda())
+    attentions = model.forward_selfattention(image.to(device))
     nh = attentions.shape[1]
 
     # we keep only the output patch attention
@@ -72,7 +72,7 @@ def run_eval(args, data_loader, model, device):
     image_count = 0
     for idx, (sample, target) in tqdm(enumerate(data_loader), total=len(data_loader)):
         sample, target = sample.to(device), target.to(device)
-        attention_mask = get_attention_masks(args, sample, model)
+        attention_mask = get_attention_masks(args, sample, model, device)
         jac_val = get_per_sample_jaccard(attention_mask, target)
         total_jac += jac_val
         image_count += 1
@@ -160,7 +160,7 @@ def generate_images_per_model(args, model, device):
 
     attention_masks = []
     for sample in samples:
-        attention_masks.append(get_attention_masks(args, sample.unsqueeze(0), model))
+        attention_masks.append(get_attention_masks(args, sample.unsqueeze(0), model, device))
 
     os.makedirs(f"{args.save_path}", exist_ok=True)
     os.makedirs(f"{args.save_path}/{args.model_name}_{args.threshold}", exist_ok=True)
