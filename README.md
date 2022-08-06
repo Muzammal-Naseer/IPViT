@@ -3,14 +3,14 @@
 [Muzammal Naseer](https://scholar.google.ch/citations?user=tM9xKA8AAAAJ&hl=en),
 [Kanchana Ranasinghe](https://scholar.google.com/citations?user=K2WBZTwAAAAJ),
 [Salman Khan](https://scholar.google.com/citations?user=M59O9lkAAAAJ&hl=en),
-[Munawar Hayat](https://scholar.google.ch/citations?user=Mx8MbWYAAAAJ&hl=en&oi=ao), 
+[Munawar Hayat](https://scholar.google.ch/citations?user=Mx8MbWYAAAAJ&hl=en&oi=ao),
 [Fahad Khan](https://scholar.google.ch/citations?user=zvaeYnUAAAAJ&hl=en&oi=ao), &
 [Ming-Hsuan Yang](https://scholar.google.com/citations?user=p9-ohHsAAAAJ&hl=en)
 
 [Paper](https://openreview.net/pdf?id=o2mbl-Hmfgd) ([arxiv](https://arxiv.org/abs/2105.10497)), [Reviews & Response](https://openreview.net/forum?id=o2mbl-Hmfgd), [Video Presentation](https://neurips.cc/virtual/2021/poster/27802), [Poster](https://neurips.cc/media/PosterPDFs/NeurIPS%202021/c404a5adbf90e09631678b13b05d9d7a_ZnmODYn.png)
 
-> **Abstract:** 
->*Vision transformers (ViT) have demonstrated impressive performance across various machine vision tasks. These models are based on multi-head self-attention mechanisms that can flexibly attend to a sequence of image patches to encode contextual cues. An important question is how such flexibility (in attending image-wide context conditioned on a given patch) can facilitate handling nuisances in natural images e.g., severe occlusions, domain shifts, spatial permutations, adversarial and natural perturbations. We systematically study this question via an extensive set of experiments encompassing three ViT families and provide comparisons with a high-performing convolutional neural network (CNN). We show and analyze the following intriguing properties of ViT: (a) Transformers are highly robust to severe occlusions, perturbations and domain shifts, e.g., retain as high as 60% top-1 accuracy on ImageNet even after randomly occluding 80% of the image content.  (b) The robust performance to occlusions is not due to a bias towards local textures, and ViTs are significantly less biased towards textures compared to CNNs. When properly trained to encode shape-based features, ViTs demonstrate shape recognition capability comparable to that of human visual system, previously unmatched in the literature. (c) Using ViTs to encode shape representation leads to an interesting consequence of accurate semantic segmentation without pixel-level supervision. (d) Off-the-shelf features from a single ViT model can be combined to create a feature ensemble, leading to high accuracy rates across a range of classification datasets in both traditional and few-shot learning paradigms.  We show effective features of ViTs are due to flexible and dynamic receptive fields possible via self-attention mechanisms. Our code will be publicly released.* 
+> **Abstract:**
+>*Vision transformers (ViT) have demonstrated impressive performance across various machine vision tasks. These models are based on multi-head self-attention mechanisms that can flexibly attend to a sequence of image patches to encode contextual cues. An important question is how such flexibility (in attending image-wide context conditioned on a given patch) can facilitate handling nuisances in natural images e.g., severe occlusions, domain shifts, spatial permutations, adversarial and natural perturbations. We systematically study this question via an extensive set of experiments encompassing three ViT families and provide comparisons with a high-performing convolutional neural network (CNN). We show and analyze the following intriguing properties of ViT: (a) Transformers are highly robust to severe occlusions, perturbations and domain shifts, e.g., retain as high as 60% top-1 accuracy on ImageNet even after randomly occluding 80% of the image content.  (b) The robust performance to occlusions is not due to a bias towards local textures, and ViTs are significantly less biased towards textures compared to CNNs. When properly trained to encode shape-based features, ViTs demonstrate shape recognition capability comparable to that of human visual system, previously unmatched in the literature. (c) Using ViTs to encode shape representation leads to an interesting consequence of accurate semantic segmentation without pixel-level supervision. (d) Off-the-shelf features from a single ViT model can be combined to create a feature ensemble, leading to high accuracy rates across a range of classification datasets in both traditional and few-shot learning paradigms.  We show effective features of ViTs are due to flexible and dynamic receptive fields possible via self-attention mechanisms. Our code will be publicly released.*
 
 ![demo](.github/demo.png)
 
@@ -24,12 +24,16 @@
 6) [Citation](#citation)
 
 ## Requirements
+
+The code requires Python 3.8 because PyTorch 1.7 [doesn't support Python versions above 3.8](https://github.com/pytorch/pytorch/issues/47354).
+
+After verifying that you are using Python 3.8, install the dependencies with:
+
 ```bash
 pip install -r requirements.txt
 ```
 
-
-## Shape Biased Models 
+## Shape Biased Models
 <sup>([top](#contents))</sup>
 Our shape biased pretrained models can be downloaded from [here](https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/tag/v0). We summarise the performance of each model below.
 
@@ -43,10 +47,10 @@ Our shape biased pretrained models can be downloaded from [here](https://github.
 | DeiT-S-SIN (distilled) 	|      42.0     	|    [Link](https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/v0/deit_s_sin_dist.pth)    	|
 
 
-Code for evaluating their shape bias using auto segmentation on the PASCAL VOC dataset can be found under scripts. Please fix any paths as necessary. You may place the VOC devkit folder under `data/voc` or fix the paths appropriately. 
+Code for evaluating their shape bias using auto segmentation on the PASCAL VOC dataset can be found under scripts. Please fix any paths as necessary. You may place the VOC devkit folder under `data/voc` or fix the paths appropriately.
 
 ### Direct Implementation
-Running segmentation evaluation on models (pre-trained models will be auto downloaded): 
+Running segmentation evaluation on models (pre-trained models will be auto downloaded):
 ```bash
 ./scripts/eval_segmentation.sh
 ```
@@ -54,10 +58,10 @@ Running segmentation evaluation on models (pre-trained models will be auto downl
 Visualizing segmentation for images in a given folder (pre-trained models will be auto downloaded):
 ```bash
 ./scripts/visualize_segmentation.sh
-``` 
+```
 
-### Additional Details 
-We compare the different shape bias capacities of the class token and the shape (distillation) token for shape distilled models. As explained in `scripts/eval_segmentation.sh`, these evaluations can be carried out as follows. 
+### Additional Details
+We compare the different shape bias capacities of the class token and the shape (distillation) token for shape distilled models. As explained in `scripts/eval_segmentation.sh`, these evaluations can be carried out as follows.
 
 Evaluate pre-trained model using the class token (default mode):
 ```bash
@@ -96,7 +100,7 @@ python evaluate_segmentation.py \
 
 ## Off the Shelf Features
 <sup>([top](#contents))</sup>
-Training code for off-the-shelf experiment in `classify_metadataset.py`. Seven datasets (aircraft, CUB, DTD, fungi, GTSRB, Places365, and INAT) available by default. Set the appropriate dir path in `classify_md.sh` by fixing `DATA_PATH`. Note that for the ResNet baselines, we adopt the PyTorch official models. All training on transfer dataset is limited to updating a final linear layer using a standard training schedule.  
+Training code for off-the-shelf experiment in `classify_metadataset.py`. Seven datasets (aircraft, CUB, DTD, fungi, GTSRB, Places365, and INAT) available by default. Set the appropriate dir path in `classify_md.sh` by fixing `DATA_PATH`. Note that for the ResNet baselines, we adopt the PyTorch official models. All training on transfer dataset is limited to updating a final linear layer using a standard training schedule.
 
 [comment]: < ![off_shelf](.github/off_shelf.png) >
 
@@ -107,7 +111,7 @@ Run training and evaluation for a selected dataset (aircraft by default) using s
 ```
 
 ### Additional Details
-Set the `DATASET` variable to one of `aircraft`, `CUB`, `DTD`, `fungi`, `GTSRB`, `Places365`, or `INAT` and model to one of `resnet50`, `deit-tiny`, or `deit-small`. Variable `EXP_NAME` can be set to any name (will be used for logging). Environment variable `DATA_PATH` should direct to the relevant dataset root directory. Note that all dataset classes are simple modifications of the standard torchvision ImageFolder class. 
+Set the `DATASET` variable to one of `aircraft`, `CUB`, `DTD`, `fungi`, `GTSRB`, `Places365`, or `INAT` and model to one of `resnet50`, `deit-tiny`, or `deit-small`. Variable `EXP_NAME` can be set to any name (will be used for logging). Environment variable `DATA_PATH` should direct to the relevant dataset root directory. Note that all dataset classes are simple modifications of the standard torchvision ImageFolder class.
 ```bash
 python classify_metadataset.py \
   --datasets "$DATASET" \
@@ -122,7 +126,7 @@ python classify_metadataset.py \
 
 ## Global Image Context (Occlusion & Shuffle)
 <sup>([top](#contents))</sup>
-We apply various occlusions and shuffle operations on images to explore the robust properties of ViT models. All evaluation is carried out on the ImageNet 2012 validation set. 
+We apply various occlusions and shuffle operations on images to explore the robust properties of ViT models. All evaluation is carried out on the ImageNet 2012 validation set.
 
 ### Direct Implementation
 For direct evaluation on ImageNet val set (change path in script) using our proposed occlusion techniques and shuffle operation run:
@@ -141,7 +145,7 @@ python evaluate.py \
   --pretrained "https://dl.fbaipublicfiles.com/deit/deit_small_patch16_224-cd65a155.pth" \
   --random_drop
 ```
-Evaluation of a pretrained model under Salient & Non-Salient PatchDrop technique can be done as below. This method borrows from [DINO](https://github.com/facebookresearch/dino) to select foreground and background pixels. 
+Evaluation of a pretrained model under Salient & Non-Salient PatchDrop technique can be done as below. This method borrows from [DINO](https://github.com/facebookresearch/dino) to select foreground and background pixels.
 ```bash
 python evaluate.py \
   --model_name deit_small_patch16_224 \
@@ -156,7 +160,7 @@ python evaluate.py \
   --model_name deit_tiny_patch16_224 \
   --test_dir "$DATA_PATH" \
   --random_drop \
-  --shuffle_size 8 8 
+  --shuffle_size 8 8
 ```
 
 Evaluate at pixel level as follows (when grid size is equivalent to image dimensions):
@@ -168,7 +172,7 @@ python evaluate.py \
   --shuffle_size 224 224
 ```
 
-Using a grid with an offset: 
+Using a grid with an offset:
 ```bash
 python evaluate.py \
   --model_name deit_tiny_patch16_224 \
@@ -212,7 +216,7 @@ python evaluate.py \
 
 ## Varying Patch Sizes and Positional Encoding
 <sup>([top](#contents))</sup>
-We present pretrained models to study the effect of varying patch sizes and positional encoding: 
+We present pretrained models to study the effect of varying patch sizes and positional encoding:
 | DeiT-T Model 	| Top-1 	| Top-5 	| Pretrained 	|
 |:------------:	|:-----:	|:-----:	|:----------:	|
 | No Pos. Enc. 	|  68.3 	|  89.0 	|    [Link](https://github.com/Muzammal-Naseer/Intriguing-Properties-of-Vision-Transformers/releases/download/v0/no_pos_deit_t.pth)    	|
@@ -226,14 +230,14 @@ We present pretrained models to study the effect of varying patch sizes and posi
 TBA
 
 ## Stylized ImageNet Training
-We generate Stylized ImageNet (SIN) following the [SIN repository](https://github.com/rgeirhos/Stylized-ImageNet). We use the [DeiT](https://github.com/facebookresearch/deit) codebase to perform standard training of DeiT models using the SIN dataset instead of natural ImageNet to obtain SIN only models. The shape distilled models are obtained by using the DeiT distillation mechanism. Training is performed using natural ImageNet. Instead of a CNN trained on natural ImageNet, a CNN (or ViT) trained on SIN is used as the teacher model.  
+We generate Stylized ImageNet (SIN) following the [SIN repository](https://github.com/rgeirhos/Stylized-ImageNet). We use the [DeiT](https://github.com/facebookresearch/deit) codebase to perform standard training of DeiT models using the SIN dataset instead of natural ImageNet to obtain SIN only models. The shape distilled models are obtained by using the DeiT distillation mechanism. Training is performed using natural ImageNet. Instead of a CNN trained on natural ImageNet, a CNN (or ViT) trained on SIN is used as the teacher model.
 
-<!-- 
+<!--
 ## To Be Added
 1) ~~Pretrained ViT models trained on Stylized ImageNet (along with distilled ones). We will provide code to use these models for auto-segmentation~~.
 2) ~~Training and Evaluations for our proposed off-the-shelf ensemble features.~~
-3) ~~Code to evaluate any model on our proposed occulusion stratagies (random, foreground and background).~~ 
-4) ~~Code for evaluation of permutation invaraince.~~ 
+3) ~~Code to evaluate any model on our proposed occulusion stratagies (random, foreground and background).~~
+4) ~~Code for evaluation of permutation invaraince.~~
 5) ~~Pretrained models to study the effect of varying patch sizes and positional encoding.~~
 6) Pretrained adversarial patches and code to evaluate them.
 7) ~~Training on Stylized Imagenet.~~
@@ -241,7 +245,7 @@ We generate Stylized ImageNet (SIN) following the [SIN repository](https://githu
 
 ## References
 <sup>([top](#contents))</sup>
-Code is based on [DeiT](https://github.com/facebookresearch/deit) repository and [TIMM](https://github.com/rwightman/pytorch-image-models) library. We thank the authors for releasing their codes. 
+Code is based on [DeiT](https://github.com/facebookresearch/deit) repository and [TIMM](https://github.com/rwightman/pytorch-image-models) library. We thank the authors for releasing their codes.
 
 ## Citation
 If you find our work, this repository and pretrained Transformers useful. Please consider giving a star :star: and citation.
