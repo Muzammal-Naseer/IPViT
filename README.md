@@ -45,6 +45,21 @@ Our shape biased pretrained models can be downloaded from [here](https://github.
 
 Code for evaluating their shape bias using auto segmentation on the PASCAL VOC dataset can be found under scripts. Please fix any paths as necessary. You may place the VOC devkit folder under `data/voc` or fix the paths appropriately. 
 
+1. Go to the [PASCAL VOC site](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/).
+1. Search for "development kit" ([this is the current link](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/#devkit), but it may change without notice)
+1. Download "training/validation data" (a large file)
+1. Expand the tar file and copy its entire structure under the `data` directory
+
+It should look like this:
+
+```text
+data
+├── voc
+│   ├── VOCdevkit
+│       ├── VOC2012
+│           ├── ... the VOC directories
+```
+
 ### Direct Implementation
 Running segmentation evaluation on models (pre-trained models will be auto downloaded): 
 ```bash
