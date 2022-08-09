@@ -24,6 +24,11 @@
 6) [Citation](#citation)
 
 ## Requirements
+
+The code requires Python 3.8 because PyTorch 1.7 [doesn't support Python versions above 3.8](https://github.com/pytorch/pytorch/issues/47354).
+
+After verifying that you are using Python 3.8, install the dependencies with:
+
 ```bash
 pip install -r requirements.txt
 ```
